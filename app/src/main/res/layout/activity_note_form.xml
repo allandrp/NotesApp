@@ -79,10 +79,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/et_title_form"
         app:layout_constraintStart_toStartOf="@+id/et_title_form"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_date_form" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_date_form"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

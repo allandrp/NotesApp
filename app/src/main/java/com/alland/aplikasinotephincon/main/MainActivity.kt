@@ -19,7 +19,14 @@ import com.alland.aplikasinotephincon.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val adapter: MainAdapter = MainAdapter()
+    private val adapter: MainAdapter = MainAdapter(){ note ->
+        val intent = Intent(this, NoteFormActivity::class.java)
+        intent.putExtra(ACTION_TYPE, NOTE_EDIT)
+        intent.putExtra(NOTE_ID, note.id)
+        intent.putExtra(NOTE_ITEM, note)
+        startActivity(intent)
+    }
+
     private val viewModel: MainViewModel by viewModels {
         ViewModelFactory.getInstance(this)
     }
@@ -44,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvNoteMain.layoutManager = layoutManager
+        binding.rvNoteMain.adapter = adapter
 
         viewModel.getAllNote().observe(this){ data ->
             if(data.isEmpty()){
@@ -51,7 +59,6 @@ class MainActivity : AppCompatActivity() {
             }else{
                 noDataSign(false)
                 adapter.setList(ArrayList(data))
-                binding.rvNoteMain.adapter = adapter
             }
         }
     }
@@ -72,5 +79,7 @@ class MainActivity : AppCompatActivity() {
         const val ACTION_TYPE = "action_type"
         const val NOTE_ADD = "add"
         const val NOTE_EDIT = "edit"
+        const val NOTE_ID = "note_id"
+        const val NOTE_ITEM = "note_item"
     }
 }

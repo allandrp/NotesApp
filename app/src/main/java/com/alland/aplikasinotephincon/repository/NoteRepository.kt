@@ -30,6 +30,10 @@ class NoteRepository(private val dao: NoteDao): INoteRepository {
         }
     }
 
+    override fun getNoteById(id: Long): LiveData<NoteEntity> {
+        return dao.getNoteById(id)
+    }
+
     companion object{
 
         @Volatile

@@ -8,7 +8,8 @@ import com.alland.aplikasinotephincon.Util
 import com.alland.aplikasinotephincon.databinding.NoteItemBinding
 import com.alland.aplikasinotephincon.room.NoteEntity
 
-class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
+class MainAdapter(val onClick: (NoteEntity) -> (Unit)
+) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
     private var listNote = ArrayList<NoteEntity>()
 
@@ -17,7 +18,9 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class MainViewHolder(private val binding: NoteItemBinding) : ViewHolder(binding.root) {
+    class MainViewHolder(
+        private val binding: NoteItemBinding
+    ) : ViewHolder(binding.root) {
         fun bind(note: NoteEntity) {
             binding.tvTitleNoteItem.text = note.title
             binding.tvContentNoteItem.text = note.content
@@ -41,5 +44,8 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         holder.bind(listNote[position])
+        holder.itemView.setOnClickListener{
+            onClick(listNote[position])
+        }
     }
 }

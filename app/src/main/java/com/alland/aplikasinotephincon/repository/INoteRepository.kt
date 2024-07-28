@@ -8,4 +8,5 @@ interface INoteRepository {
     suspend fun insertNote(note: NoteEntity): Long
     suspend fun deleteNote(note: NoteEntity)
     suspend fun updateNote(note: NoteEntity)
+    fun getNoteById(id: Long): LiveData<NoteEntity>
 }
