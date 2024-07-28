@@ -54,6 +54,7 @@ class NoteFormActivity : AppCompatActivity() {
             }
             binding.tvDateForm.visibility = View.VISIBLE
         } else {
+            binding.btnDeleteForm.visibility = View.GONE
             binding.tvDateForm.visibility = View.GONE
         }
 
