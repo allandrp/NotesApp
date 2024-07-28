@@ -2,4 +2,37 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#6B90FE</color>
+    <color name="colorPrimaryVariant">#4973F5</color>
+    <color name="colorPrimaryContainer">#E0E7FF</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="onPrimaryContainer">#1B2FA6</color>
+
+    <color name="colorSecondary">#6B90FE</color>
+    <color name="colorSecondaryVariant">#4973F5</color>
+    <color name="colorSecondaryContainer">#E0E7FF</color>
+    <color name="onSecondary">#FFFFFF</color>
+    <color name="onSecondaryContainer">#1B2FA6</color>
+
+    <color name="colorTertiary">#7D5260</color>
+    <color name="onTertiary">#FFFFFF</color>
+    <color name="colorTertiaryContainer">#FFD8E4</color>
+    <color name="onTertiaryContainer">#31111D</color>
+
+    <color name="colorError">#BA1B1B</color>
+    <color name="colorErrorContainer">#FFDAD4</color>
+    <color name="onError">#FFFFFF</color>
+    <color name="onErrorContainer">#410E0B</color>
+
+    <color name="colorBackground">#FFFBFE</color>
+    <color name="onBackground">#1C1B1F</color>
+    <color name="colorSurface">#FFFBFE</color>
+    <color name="onSurface">#1C1B1F</color>
+    <color name="colorSurfaceVariant">#E7E0EC</color>
+    <color name="onSurfaceVariant">#49454F</color>
+    <color name="colorOutline">@color/colorPrimary</color>
+    <color name="colorOnSurfaceInverse">#F4EFF4</color>
+    <color name="colorSurfaceInverse">#313033</color>
+
+    <color name="secondaryTextColor">#B2B2B2</color>
 </resources>
