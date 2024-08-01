@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.alland.aplikasinotephincon.MyApplication
 import com.alland.aplikasinotephincon.R
 import com.alland.aplikasinotephincon.Util
 import com.alland.aplikasinotephincon.ViewModelFactory
@@ -18,16 +19,21 @@ import com.alland.aplikasinotephincon.databinding.ActivityNoteFormBinding
 import com.alland.aplikasinotephincon.main.MainActivity
 import com.alland.aplikasinotephincon.room.NoteEntity
 import com.google.android.material.snackbar.Snackbar
+import javax.inject.Inject
 
 class NoteFormActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNoteFormBinding
     private var note: NoteEntity? = null
+
+    @Inject
+    lateinit var factory: ViewModelFactory
     private val viewModel: NoteFormViewModel by viewModels {
-        ViewModelFactory.getInstance(this)
+        factory
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityNoteFormBinding.inflate(layoutInflater)

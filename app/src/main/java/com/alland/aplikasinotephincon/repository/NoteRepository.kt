@@ -6,8 +6,11 @@ import com.alland.aplikasinotephincon.room.NoteDao
 import com.alland.aplikasinotephincon.room.NoteEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class NoteRepository(private val dao: NoteDao): INoteRepository {
+@Singleton
+class NoteRepository @Inject constructor(private val dao: NoteDao): INoteRepository {
     override fun getAllNote(): LiveData<List<NoteEntity>> {
         return dao.getAllNotes()
     }
@@ -32,24 +35,5 @@ class NoteRepository(private val dao: NoteDao): INoteRepository {
 
     override fun getNoteById(id: Long): LiveData<NoteEntity> {
         return dao.getNoteById(id)
-    }
-
-    companion object{
-
-        @Volatile
-        private var INSTANCE: NoteRepository? = null
-
-        @JvmStatic
-        fun getInstance(noteDao: NoteDao): NoteRepository {
-            if(INSTANCE == null){
-                synchronized(this){
-                    val instance = NoteRepository(noteDao)
-                    INSTANCE = instance
-                    return instance
-                }
-            }
-            return INSTANCE as NoteRepository
-        }
-
     }
 }

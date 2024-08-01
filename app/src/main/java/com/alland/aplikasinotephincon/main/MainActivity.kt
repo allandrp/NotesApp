@@ -1,5 +1,6 @@
 package com.alland.aplikasinotephincon.main
 
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,10 +12,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.alland.aplikasinotephincon.MyApplication
 import com.alland.aplikasinotephincon.form.NoteFormActivity
 import com.alland.aplikasinotephincon.R
 import com.alland.aplikasinotephincon.ViewModelFactory
 import com.alland.aplikasinotephincon.databinding.ActivityMainBinding
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,11 +30,15 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private val viewModel: MainViewModel by viewModels {
-        ViewModelFactory.getInstance(this)
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    val viewModel: MainViewModel by viewModels {
+        factory
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)

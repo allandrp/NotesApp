@@ -3,12 +3,14 @@ package com.alland.aplikasinotephincon
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.alland.aplikasinotephincon.di.Injection
 import com.alland.aplikasinotephincon.form.NoteFormViewModel
 import com.alland.aplikasinotephincon.main.MainViewModel
 import com.alland.aplikasinotephincon.repository.INoteRepository
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ViewModelFactory private constructor(private val noteRepository: INoteRepository) :
+@Singleton
+class ViewModelFactory @Inject constructor(private val noteRepository: INoteRepository) :
     ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -24,24 +26,6 @@ class ViewModelFactory private constructor(private val noteRepository: INoteRepo
             else -> {
                 throw IllegalArgumentException("Unknown View Model Class : " + modelClass.name)
             }
-        }
-    }
-
-    companion object {
-        @Volatile
-        private var INSTANCE: ViewModelFactory? = null
-
-        @JvmStatic
-        fun getInstance(context: Context): ViewModelFactory {
-            if (INSTANCE == null) {
-                synchronized(ViewModelFactory::class.java) {
-                    val instance = ViewModelFactory(Injection.provideRepository(context))
-                    INSTANCE = instance
-                    return instance
-                }
-            }
-
-            return INSTANCE as ViewModelFactory
         }
     }
 }
